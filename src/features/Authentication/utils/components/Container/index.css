@@ -1,0 +1,10 @@
+.container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    backdrop-filter: blur(12px);
+    background-color: rgba(255 255 255 / 0.2);
+    transition-delay: calc(var(--Transition-duration) + 0.1s);
+    transition: width var(--Transition-duration);
+}

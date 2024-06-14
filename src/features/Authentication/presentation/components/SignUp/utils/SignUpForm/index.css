@@ -1,0 +1,11 @@
+.signUpFormContainer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2px;
+    column-gap: 2px;
+    width: 400px;
+    max-width: 100%;
+    margin: auto;
+    padding-top: 2px;
+    padding-bottom: 5px;
+}
