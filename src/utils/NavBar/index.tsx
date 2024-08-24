@@ -87,7 +87,7 @@ function AppAppBar() {
                 onClick={() => history.push("/")}
               >
                 <img
-                  src={"/public/logo.png"}
+                  src={`${import.meta.env.BASE_URL}/public/logo.png`}
                   style={logoStyle}
                   alt="logo of sitemark"
                 />

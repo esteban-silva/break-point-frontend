@@ -1,4 +1,4 @@
-import { Route, Router, Switch, BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
 import { AuthProvider } from "./context/Auth/AuthProvider";
 import { SignUp } from "./features/Authentication/presentation/components/SignUp";
 import { LogIn } from "./features/Authentication/presentation/components/Login";
@@ -45,7 +45,7 @@ const AuthRoutes = () => {
             paddingRight: "20px",
           }}
         >
-          <Switch >
+          <Switch>
             <Route path="/bookings/create-booking" component={Booking} />
             <Route component={Home} />
           </Switch>
@@ -60,16 +60,16 @@ function App() {
 
   return (
     <Layout>
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
-      <Router history={history}>
-        <AuthProvider>
-          <Switch>
-            <Route path="/login" component={LogIn} />
-            <Route path="/signup" component={SignUp} />
-            <Route component={AuthRoutes} />
-          </Switch>
-        </AuthProvider>
-      </Router>
+      <BrowserRouter basename={`${import.meta.env.BASE_URL}`}>
+        <Router history={history}>
+          <AuthProvider>
+            <Switch>
+              <Route path="/login" component={LogIn} />
+              <Route path="/signup" component={SignUp} />
+              <Route component={AuthRoutes} />
+            </Switch>
+          </AuthProvider>
+        </Router>
       </BrowserRouter>
     </Layout>
   );
