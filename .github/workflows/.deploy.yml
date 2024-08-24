@@ -29,6 +29,10 @@ jobs:
           name: production-files
           path: ./dist
 
+      - name: Test
+        run: echo "Back is $BASE_URL_BACKEND"
+
+
   deploy:
     name: Deploy
     needs: build
