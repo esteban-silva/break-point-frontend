@@ -15,6 +15,7 @@ const getHeaders = () => {
 };
 
 const BASE_URL_BACKEND = process.env.BASE_URL_BACKEND;
+console.log('URL BACK', process.env.BASE_URL_BACKEND);
 
 class ApiMethods {
   static apiRequest = (
