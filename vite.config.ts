@@ -1,7 +1,7 @@
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 
-const cherryPickedKeys = ["BASE_URL_BACKEND"];
+const cherryPickedKeys = [""];
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -12,9 +12,9 @@ export default defineConfig(({ mode }) => {
   cherryPickedKeys.forEach((key) => (processEnv[key] = env[key]));
 
   return {
-    define: {
-      "process.env": processEnv,
-    },
+    // define: {
+    //   "process.env": processEnv,
+    // },
     plugins: [react()],
     base: "/break-point-frontend"
   };
