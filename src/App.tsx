@@ -1,4 +1,4 @@
-import { Route, Router, Switch } from "react-router-dom";
+import { Route, Router, Switch, BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/Auth/AuthProvider";
 import { SignUp } from "./features/Authentication/presentation/components/SignUp";
 import { LogIn } from "./features/Authentication/presentation/components/Login";
@@ -60,6 +60,7 @@ function App() {
 
   return (
     <Layout>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Router history={history}>
         <AuthProvider>
           <Switch>
@@ -69,6 +70,7 @@ function App() {
           </Switch>
         </AuthProvider>
       </Router>
+      </BrowserRouter>
     </Layout>
   );
 }
