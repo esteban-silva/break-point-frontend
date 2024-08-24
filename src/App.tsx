@@ -60,8 +60,8 @@ function App() {
 
   return (
     <Layout>
-      <BrowserRouter basename={`${import.meta.env.BASE_URL}`}>
-        <Router history={history}>
+      <Router history={history}>
+        <BrowserRouter basename={`${import.meta.env.BASE_URL}`}>
           <AuthProvider>
             <Switch>
               <Route path="/login" component={LogIn} />
@@ -69,8 +69,8 @@ function App() {
               <Route component={AuthRoutes} />
             </Switch>
           </AuthProvider>
-        </Router>
-      </BrowserRouter>
+        </BrowserRouter>
+      </Router>
     </Layout>
   );
 }
