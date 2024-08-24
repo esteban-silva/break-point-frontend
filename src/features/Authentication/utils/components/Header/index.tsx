@@ -1,36 +1,8 @@
-import {
-  Box,
-  IconButton,
-  IconButtonProps,
-  Typography,
-  useColorScheme,
-} from "@mui/joy";
-import {
-  DarkModeRounded,
-  BadgeRounded,
-  LightModeRounded,
-} from "@mui/icons-material";
-import "./index.css";
+import { Box, IconButton, Typography } from "@mui/joy";
 
-function ColorSchemeToggle(props: IconButtonProps) {
-  const { onClick, ...rest } = props;
-  const { mode, setMode } = useColorScheme();
-  return (
-    <IconButton
-      aria-label="toggle light/dark mode"
-      size="sm"
-      variant="outlined"
-      //   disabled={!mounted}
-      onClick={(event) => {
-        setMode(mode === "light" ? "dark" : "light");
-        onClick?.(event);
-      }}
-      {...rest}
-    >
-      {mode === "light" ? <DarkModeRounded /> : <LightModeRounded />}
-    </IconButton>
-  );
-}
+import "./index.css";
+import ColorSchemeToggle from "../../../../../utils/ColorSchemeToggle";
+import { BadgeRounded } from "@mui/icons-material";
 
 export const Header = () => {
   return (

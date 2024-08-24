@@ -9,10 +9,8 @@ enum Methods {
 }
 
 const getHeaders = () => {
-  // const authToken = localStorage.getItem("authToken") || "";
   return {
     "Content-Type": "application/json",
-    // Authorization: `Bearer ${authToken}`,
   };
 };
 
@@ -24,15 +22,12 @@ class ApiMethods {
     url: string,
     body?: unknown
   ): Promise<IApiResponse> => {
-    console.log("url:", BASE_URL_BACKEND + url);
-    console.log("body:", body);
-    console.log("method:", method);
-
     return new Promise((resolve, reject) => {
       fetch(BASE_URL_BACKEND + url, {
         method: method,
         headers: getHeaders(),
         body: JSON.stringify(body),
+        credentials: "include",
       })
         .then((response) => response.json())
         .then((data) => {
@@ -49,7 +44,6 @@ class ApiMethods {
   };
 
   static post = (url: string, data: unknown): Promise<IApiResponse> => {
-    console.log("le pego a la api: con data", data);
     return this.apiRequest(Methods.POST, url, data);
   };
 

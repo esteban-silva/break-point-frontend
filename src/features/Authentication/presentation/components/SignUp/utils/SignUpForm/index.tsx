@@ -10,13 +10,13 @@ import {
 } from "@mui/joy";
 import "./index.css";
 import ApiManager from "../../../../../../../api/ApiManager/apiManager";
-import IUser from "../../../../../interface/IUser";
 import { useState } from "react";
 import IApiResponse from "../../../../../../../api/ApiManager/IApiResponse";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AlertComponent from "../../../../../../../utils/AlertsComponent";
 import LoadingComponent from "../../../../../../../utils/LoadingComponent";
+import { useHistory } from "react-router";
+import { IUserForm } from "../../../../../../../types/IUser";
 
 export const SingUpForm = () => {
   const [loading, setLoading] = useState(false);
@@ -31,7 +31,8 @@ export const SingUpForm = () => {
     formState: { errors },
     handleSubmit,
     watch,
-  } = useForm<IUser>({
+    reset,
+  } = useForm<IUserForm>({
     mode: "all",
     defaultValues: {
       name: "",
@@ -44,15 +45,16 @@ export const SingUpForm = () => {
     },
   });
 
-  const history = useNavigate();
+  const history = useHistory();
 
-  const onSubmit = (data: IUser) => {
-    ApiManager.signup(data as IUser).then((res: IApiResponse) => {
+  const onSubmit = (data: IUserForm) => {
+    ApiManager.signup(data as IUserForm).then((res: IApiResponse) => {
       if (res.status === 201) {
         setAlert({ message: res.message, type: "success", open: true });
         setLoading(true);
+        reset({});
         setTimeout(() => {
-          history("/login");
+          history.push("/login");
         }, 2500);
       } else {
         setAlert({ message: res.message, type: "danger", open: true });

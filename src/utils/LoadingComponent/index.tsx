@@ -1,6 +1,6 @@
 import { CircularProgress, Modal } from "@mui/joy";
 
-const LoadingComponent = ({ handleClose }: { handleClose: () => void }) => {
+const LoadingComponent = ({ handleClose }: { handleClose?: () => void}) => {
   return (
     <Modal
       aria-labelledby="modal-title"
