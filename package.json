@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "http://esteban-silva.github.io/break-point-frontend",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -42,6 +43,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "framer-motion": "^11.2.10",
+    "gh-pages": "^6.1.1",
     "postcss": "^8.4.38",
     "tailwind-merge": "^2.3.0",
     "tailwindcss": "^3.4.4",

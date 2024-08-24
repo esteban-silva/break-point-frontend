@@ -45,7 +45,7 @@ const AuthRoutes = () => {
             paddingRight: "20px",
           }}
         >
-          <Switch>
+          <Switch >
             <Route path="/bookings/create-booking" component={Booking} />
             <Route component={Home} />
           </Switch>

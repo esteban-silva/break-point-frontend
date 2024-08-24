@@ -16,7 +16,6 @@ export default defineConfig(({ mode }) => {
       "process.env": processEnv,
     },
     plugins: [react()],
-    base: "/break-point-frontend"
   };
 });
 
