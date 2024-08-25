@@ -31,6 +31,8 @@ jobs:
 
       - name: Build project
         run: npm run build
+        env:
+          BASE_URL_BACKEND: ${{ secrets.BASE_URL_BACKEND }}
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
