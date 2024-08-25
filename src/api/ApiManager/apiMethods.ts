@@ -15,7 +15,7 @@ const getHeaders = () => {
 };
 
 const BASE_URL_BACKEND = import.meta.env.BASE_URL_BACKEND;
-console.log('URL BACK', import.meta.env.BASE_URL_BACKEND);
+console.log('URL BACK', import.meta.env.BASE_URL_BACKEND, process.env.BASE_URL_BACKEND);
 
 class ApiMethods {
   static apiRequest = (
