@@ -6,15 +6,6 @@ on:
       - main
 
 jobs:
-  top-secret:
-    runs-on: ubuntu-latest
-    env: 
-      BASE_URL_BACKEND: ${{ secrets.BASE_URL_BACKEND }}
-
-    steps:
-      - name: Read a variable
-        run: echo "My variable is ${{ secrets.BASE_URL_BACKEND }}"
-
   build:
     name: Build
     runs-on: ubuntu-latest
