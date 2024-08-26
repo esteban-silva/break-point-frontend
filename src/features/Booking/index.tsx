@@ -60,7 +60,7 @@ const Booking = () => {
       userId: auth.user.id,
     }).then((data) => {
       if (data.status === 200) {
-        history.push("/");
+        history.push("/home");
       } else {
         if (data.status === 400) {
           console.log("error booking", data);

@@ -51,7 +51,7 @@ export const LoginForm = () => {
         setUser(res.data as IUser);
         setIsAuthenticated(true);
         setTimeout(() => {
-          history.push("/");
+          history.push("/home");
         }, 2500);
       } else {
         setAlert({ message: "Try again later.", type: "danger", open: true });

@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
 import { AuthProvider } from "./context/Auth/AuthProvider";
 import { SignUp } from "./features/Authentication/presentation/components/SignUp";
-import { LogIn } from "./features/Authentication/presentation/components/Login";
 import { ProtectedRouteComponent } from "./routes/ProtectedRoutes";
 import Home from "./features/Home/presentation/Home";
 import { createBrowserHistory } from "history";
@@ -16,8 +15,20 @@ import { CssVarsProvider as JoyCssVarsProvider } from "@mui/joy/styles";
 import Booking from "./features/Booking";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { lazy, Suspense } from "react";
+import LoadingComponent from "./utils/LoadingComponent/index.tsx";
 
 const materialTheme = materialExtendTheme();
+const LoginComponent = lazy(
+  () =>
+    import("./features/Authentication/presentation/components/Login/index.tsx")
+);
+
+const LazyLogin = () => (
+  <Suspense fallback={<LoadingComponent />}>
+    <LoginComponent />
+  </Suspense>
+);
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -35,23 +46,25 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 const AuthRoutes = () => {
   const marginTop = 64 + 16 + 20; // 64 = navbar height + margin top narbar + margin
   return (
-    <ProtectedRouteComponent>
-      <>
-        <NavBar />
-        <div
-          style={{
-            marginTop: `${marginTop}px`,
-            paddingLeft: "20px",
-            paddingRight: "20px",
-          }}
-        >
-          <Switch>
-            <Route path="/bookings/create-booking" component={Booking} />
-            <Route component={Home} />
-          </Switch>
-        </div>
-      </>
-    </ProtectedRouteComponent>
+    <AuthProvider>
+      <ProtectedRouteComponent>
+        <>
+          <NavBar />
+          <div
+            style={{
+              marginTop: `${marginTop}px`,
+              paddingLeft: "20px",
+              paddingRight: "20px",
+            }}
+          >
+            <Switch>
+              <Route path="/bookings/create-booking" component={Booking} />
+              <Route component={Home} path={"*"} />
+            </Switch>
+          </div>
+        </>
+      </ProtectedRouteComponent>
+    </AuthProvider>
   );
 };
 
@@ -62,13 +75,11 @@ function App() {
     <Layout>
       <Router history={history}>
         <BrowserRouter basename={`${import.meta.env.BASE_URL}`}>
-          <AuthProvider>
-            <Switch>
-              <Route path="/login" component={LogIn} />
-              <Route path="/signup" component={SignUp} />
-              <Route component={AuthRoutes} />
-            </Switch>
-          </AuthProvider>
+          <Switch>
+            <Route path="/login" component={LazyLogin} />
+            <Route path="/signup" component={SignUp} />
+            <Route component={AuthRoutes} />
+          </Switch>
         </BrowserRouter>
       </Router>
     </Layout>

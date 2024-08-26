@@ -26,7 +26,7 @@ function AppAppBar() {
   const menuItems: MenuItems[] = [
     {
       title: "Home",
-      handleClick: () => history.push("/"),
+      handleClick: () => history.push("/home"),
     },
     {
       title: "Booking",
@@ -84,7 +84,7 @@ function AppAppBar() {
                   alignItems: "center",
                   cursor: "pointer",
                 }}
-                onClick={() => history.push("/")}
+                onClick={() => history.push("/home")}
               >
                 <img
                   src={`${import.meta.env.BASE_URL}/logo.png`}

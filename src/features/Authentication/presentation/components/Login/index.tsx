@@ -2,7 +2,7 @@ import { Container } from "../../../utils/components/Container";
 import { Header } from "../../../utils/components/Header";
 import { LoginForm } from "./LoginForm";
 
-export const LogIn = () => {
+const LogIn = () => {
   return (
     <>
       <Container>
@@ -12,3 +12,5 @@ export const LogIn = () => {
     </>
   );
 };
+
+export default LogIn;

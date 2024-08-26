@@ -92,7 +92,7 @@ export const HomeGridData = (data: IUserBookings[]) => {
           </td>
           <td style={{ padding: "12px 6px" }}>
             <img
-              src={`public/${item.court.surface}_surface.png`}
+              src={`${import.meta.env.BASE_URL}/${item.court.surface}_surface.png`}
               alt="clay court"
               width="120px"
               height="60px"

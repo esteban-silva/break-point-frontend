@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { AuthContext } from "./AuthContext";
-import {IUser} from "../../types/IUser";
+import { IUser } from "../../types/IUser";
 import IApiResponse from "../../api/ApiManager/IApiResponse";
 import ApiManager from "../../api/ApiManager/apiManager";
 import { useHistory } from "react-router";
