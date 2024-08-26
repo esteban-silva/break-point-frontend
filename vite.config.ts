@@ -12,12 +12,10 @@ export default defineConfig(({ mode }) => {
   cherryPickedKeys.forEach((key) => (processEnv[key] = env[key]));
 
   return {
-    // define: {
-    //   "process.env": processEnv,
-    // },
+    define: {
+      "process.env": processEnv,
+    },
     plugins: [react()],
-    base: "/break-point-frontend"
+    base: "/break-point-frontend",
   };
 });
-
-
