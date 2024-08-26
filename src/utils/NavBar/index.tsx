@@ -87,7 +87,7 @@ function AppAppBar() {
                 onClick={() => history.push("/")}
               >
                 <img
-                  src={`${import.meta.env.BASE_URL}/public/logo.png`}
+                  src={`${import.meta.env.BASE_URL}/logo.png`}
                   style={logoStyle}
                   alt="logo of sitemark"
                 />
@@ -99,7 +99,7 @@ function AppAppBar() {
                   fontFamily="monospace"
                   noWrap
                 >
-                  Break-Point
+                  Break Point
                 </Typography>
               </Box>
               <Box sx={{ display: "flex" }}>

@@ -57,7 +57,7 @@ export const SingUpForm = () => {
           history.push("/login");
         }, 2500);
       } else {
-        setAlert({ message: res.message, type: "danger", open: true });
+        setAlert({ message: "Try again later", type: "danger", open: true });
       }
     });
   };

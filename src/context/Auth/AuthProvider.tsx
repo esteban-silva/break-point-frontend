@@ -10,7 +10,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
   const history = useHistory();
   const setUserLocal = (newUser: IUser) => {
-    console.log("setUser en AuthProvider");
     if (user?.email !== newUser.email) {
       setUser(newUser);
     }

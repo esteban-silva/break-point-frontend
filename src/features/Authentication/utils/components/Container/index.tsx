@@ -53,11 +53,11 @@ export const Container = ({ children }: { children: React.ReactNode }) => {
             backgroundRepeat: "no-repeat",
             backgroundImage: `url(${
               import.meta.env.BASE_URL
-            }/public/bg-img-light-mode.png)`,
+            }/bg-img-light-mode.png)`,
             [theme.getColorSchemeSelector("dark")]: {
               backgroundImage: `url(${
                 import.meta.env.BASE_URL
-              }/public/bg-img-dark-mode-2.png)`,
+              }/bg-img-dark-mode-2.png)`,
             },
           })}
         />

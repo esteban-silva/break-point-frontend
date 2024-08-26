@@ -17,7 +17,7 @@ import { useHistory } from "react-router";
 import GridComponent from "../../utils/GridComponent";
 import { BookingGridData } from "./BookingGrid";
 import { CourtProps, CourtSurface } from "../../types/Bookings";
-import "./index.css"
+import "./index.css";
 
 const Booking = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
@@ -28,7 +28,6 @@ const Booking = () => {
   const auth = useAuth();
   const history = useHistory();
   const handleDate = (value: Date | undefined) => {
-    console.log("date actual seleccionada", value);
     if (value) setDate(value);
   };
 
@@ -60,7 +59,6 @@ const Booking = () => {
       status: "approved",
       userId: auth.user.id,
     }).then((data) => {
-      console.log("DATA QUE ME LLEGO", data);
       if (data.status === 200) {
         history.push("/");
       } else {
@@ -131,7 +129,12 @@ const Booking = () => {
             minDateTime={dayjs(new Date())}
           />
         </FormControl>
-        <Button variant="soft" color="neutral" onClick={() => handleSearch()} sx={{ alignSelf: "end" }}>
+        <Button
+          variant="soft"
+          color="neutral"
+          onClick={() => handleSearch()}
+          sx={{ alignSelf: "end" }}
+        >
           Search
         </Button>
       </Box>

@@ -46,7 +46,6 @@ export const LoginForm = () => {
 
   const onSubmit = (data: { email: string; password: string }) => {
     ApiManager.login(data).then((res: IApiResponse) => {
-      console.log(`respuesta del sv: ${res.data}`);
       if (res.status === 200) {
         setLoading(true);
         setUser(res.data as IUser);
@@ -55,7 +54,7 @@ export const LoginForm = () => {
           history.push("/");
         }, 2500);
       } else {
-        setAlert({ message: res.message, type: "danger", open: true });
+        setAlert({ message: "Try again later.", type: "danger", open: true });
       }
     });
   };

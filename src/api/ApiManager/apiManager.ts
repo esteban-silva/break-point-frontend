@@ -19,7 +19,15 @@ export default class ApiManager {
   }
 
   static async getCurrentSession(): Promise<IApiResponse> {
-    return ApiMethods.get(ENDPOINTS.CURRENT_USER);
+    try {
+      return ApiMethods.get(ENDPOINTS.CURRENT_USER);
+    } catch (error) {
+      return {
+        status: 500,
+        message: String(error),
+        data: null,
+      };
+    }
   }
 
   static async getBookingsByUserId({

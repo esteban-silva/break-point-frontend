@@ -1,8 +1,7 @@
-import { Box, IconButton, Typography } from "@mui/joy";
+import { Box, Typography } from "@mui/joy";
 
 import "./index.css";
 import ColorSchemeToggle from "../../../../../utils/ColorSchemeToggle";
-import { BadgeRounded } from "@mui/icons-material";
 
 export const Header = () => {
   return (
@@ -15,9 +14,7 @@ export const Header = () => {
       }}
     >
       <Box sx={{ gap: 2, display: "flex", alignItems: "center" }}>
-        <IconButton variant="soft" color="primary" size="sm">
-          <BadgeRounded />
-        </IconButton>
+          <img src="logo.png" alt="logo" width={20} height={20}/>
         <Typography level="title-lg">Break Point</Typography>
       </Box>
       <ColorSchemeToggle />
