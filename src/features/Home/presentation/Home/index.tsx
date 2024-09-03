@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/joy";
+import { Box, FormControl, FormLabel, Typography } from "@mui/joy";
 import ApiManager from "../../../../api/ApiManager/apiManager";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../../context/Auth/useAuth";
@@ -6,11 +6,18 @@ import LoadingComponent from "../../../../utils/LoadingComponent";
 import { IUserBookings } from "../../../../types/Bookings";
 import GridComponent from "../../../../utils/GridComponent";
 import { HomeGridData, HomeGridHeader } from "./HomeGridData";
+import dayjs from "dayjs";
+import { DatePicker } from "@mui/x-date-pickers";
 
 const Home = () => {
   const { user } = useAuth();
   const [bookings, setBookings] = useState<IUserBookings[] | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [filterDate, setFilterDate] = useState<Date>(new Date());
+
+  const createDate = (dateToParse: Date) => {
+    return dayjs(dateToParse).format("YYYY-MM-DD");
+  };
 
   useEffect(() => {
     ApiManager.getBookingsByUserId({
@@ -50,9 +57,36 @@ const Home = () => {
       <Typography level="h1" sx={{ mb: 2 }}>
         My bookings
       </Typography>
+      <FormControl
+        size="lg"
+        sx={{
+          width: "400px",
+          mb: 2,
+          mt: 2,
+          display: "flex",
+          justifyContent: "space-between",
+          flexDirection: "row",
+          gap: 1,
+          alignItems: "center",
+          alignContent: "center",
+        }}
+      >
+        <FormLabel sx={{ height: "100%" }}>Date of Booking</FormLabel>
+        <DatePicker
+          className="date-picker"
+          sx={{ height: "100%" }}
+          views={["day"]}
+          onChange={(value) => setFilterDate(value?.toDate() || new Date())}
+          format="DD/MM/YYYY"
+          defaultValue={dayjs(new Date())}
+        />
+      </FormControl>
       <GridComponent
         headers={HomeGridHeader()}
-        gridData={HomeGridData(bookings)}
+        gridData={HomeGridData(
+          bookings as IUserBookings[],
+          createDate(filterDate)
+        )}
       />
     </Box>
   ) : (

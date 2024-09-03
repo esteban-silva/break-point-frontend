@@ -20,7 +20,7 @@ import { CourtProps, CourtSurface } from "../../types/Bookings";
 import "./index.css";
 
 const Booking = () => {
-  const [date, setDate] = useState<Date | undefined>(undefined);
+  const [date, setDate] = useState<Date>(new Date());
   const [availableCourt, setAvailableCourt] = useState<
     CourtProps[] | undefined
   >(undefined);
@@ -76,6 +76,8 @@ const Booking = () => {
     setSurface(newValue as CourtSurface);
   };
 
+  const minDate = new Date();
+
   return (
     <Box
       style={{
@@ -126,7 +128,11 @@ const Booking = () => {
               minutes: null,
               seconds: null,
             }}
-            minDateTime={dayjs(new Date())}
+            minDateTime={dayjs(minDate.setHours(minDate.getHours() + 1, 0, 0, 0))}
+            defaultValue={dayjs(
+              minDate.setHours(minDate.getHours() + 1, 0, 0, 0)
+            )}
+            onError={(value) => console.log("error", value)}
           />
         </FormControl>
         <Button
