@@ -6,6 +6,9 @@ import {
   CheckRounded,
 } from "@mui/icons-material";
 import moment from "moment";
+import { DatePicker } from "@mui/x-date-pickers";
+import dayjs from "dayjs";
+import { useState } from "react";
 
 export const HomeGridHeader = () => {
   return (
@@ -51,55 +54,72 @@ export const HomeGridHeader = () => {
 };
 
 export const HomeGridData = (data: IUserBookings[]) => {
+  const [filterDate, setFilterDate] = useState(new Date());
+
   return (
     <>
-      {data.map((item) => (
-        <tr
-          key={item.id}
-          style={{ textAlign: "center", alignContent: "center" }}
-        >
-          <td style={{ padding: "12px 6px" }}>
-            <Typography level="body-xs">
-              {moment(item.date).format("DD/MM/YYYY HH:mm")}
-            </Typography>
-          </td>
-          <td style={{ padding: "12px 6px" }}>
-            <Chip
-              variant="soft"
-              size="sm"
-              startDecorator={
-                item.status === BookingStatus.APPROVED ? (
-                  <CheckRounded />
-                ) : item.status === BookingStatus.CANCELLED ? (
-                  <BlockRounded />
-                ) : (
-                  <AutorenewRounded />
-                )
-              }
-              color={
-                item.status === BookingStatus.APPROVED
-                  ? "success"
-                  : item.status === BookingStatus.CANCELLED
-                  ? "danger"
-                  : "neutral"
-              }
+      <div>
+        <DatePicker
+          className="date-picker"
+          sx={{ height: "100%" }}
+          views={["day"]}
+          onChange={(value) => setFilterDate(value?.toDate() || new Date())}
+          format="DD/MM/YYYY"
+          defaultValue={dayjs(new Date())}
+        />
+      </div>
+      {data.map(
+        (item) =>
+          (
+            <tr
+              key={item.id}
+              style={{ textAlign: "center", alignContent: "center" }}
             >
-              {item.status}
-            </Chip>
-          </td>
-          <td style={{ padding: "12px 6px" }}>
-            <Typography level="body-xs">{item.court.name}</Typography>
-          </td>
-          <td style={{ padding: "12px 6px" }}>
-            <img
-              src={`${import.meta.env.BASE_URL}/${item.court.surface}_surface.png`}
-              alt="clay court"
-              width="120px"
-              height="60px"
-            />
-          </td>
-        </tr>
-      ))}
+              <td style={{ padding: "12px 6px" }}>
+                <Typography level="body-xs">
+                  {moment(item.date).format("DD/MM/YYYY HH:mm")}
+                </Typography>
+              </td>
+              <td style={{ padding: "12px 6px" }}>
+                <Chip
+                  variant="soft"
+                  size="sm"
+                  startDecorator={
+                    item.status === BookingStatus.APPROVED ? (
+                      <CheckRounded />
+                    ) : item.status === BookingStatus.CANCELLED ? (
+                      <BlockRounded />
+                    ) : (
+                      <AutorenewRounded />
+                    )
+                  }
+                  color={
+                    item.status === BookingStatus.APPROVED
+                      ? "success"
+                      : item.status === BookingStatus.CANCELLED
+                      ? "danger"
+                      : "neutral"
+                  }
+                >
+                  {item.status}
+                </Chip>
+              </td>
+              <td style={{ padding: "12px 6px" }}>
+                <Typography level="body-xs">{item.court.name}</Typography>
+              </td>
+              <td style={{ padding: "12px 6px" }}>
+                <img
+                  src={`${import.meta.env.BASE_URL}/${
+                    item.court.surface
+                  }_surface.png`}
+                  alt="clay court"
+                  width="120px"
+                  height="60px"
+                />
+              </td>
+            </tr>
+          )
+      )}
     </>
   );
 };
