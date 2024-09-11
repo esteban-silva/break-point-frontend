@@ -59,7 +59,7 @@ const AuthRoutes = () => {
           >
             <Switch>
               <Route path="/bookings/create-booking" component={Booking} />
-              <Route component={Home} path={"*"} />
+              <Route component={Home} path={"/home"} />
             </Switch>
           </div>
         </>
@@ -74,7 +74,7 @@ function App() {
   return (
     <Layout>
       <Router history={history}>
-        <BrowserRouter basename={`${import.meta.env.BASE_URL}`}>
+        <BrowserRouter>
           <Switch>
             <Route path="/login" component={LazyLogin} />
             <Route path="/signup" component={SignUp} />

@@ -60,7 +60,7 @@ export const BookingGridData = (
           </td>
           <td style={{ padding: "12px 6px" }}>
             <img
-              src={`${import.meta.env.BASE_URL}/${item.surface}_surface.png`}
+              src={`${item.surface}_surface.png`}
               alt="clay court"
               width="120px"
               height="60px"

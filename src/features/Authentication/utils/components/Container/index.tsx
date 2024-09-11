@@ -51,13 +51,9 @@ export const Container = ({ children }: { children: React.ReactNode }) => {
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            backgroundImage: `url(${
-              import.meta.env.BASE_URL
-            }/bg-img-light-mode.png)`,
+            backgroundImage: `url(bg-img-light-mode.png)`,
             [theme.getColorSchemeSelector("dark")]: {
-              backgroundImage: `url(${
-                import.meta.env.BASE_URL
-              }/bg-img-dark-mode-2.png)`,
+              backgroundImage: `url(bg-img-dark-mode-2.png)`,
             },
           })}
         />

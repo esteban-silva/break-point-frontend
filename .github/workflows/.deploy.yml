@@ -1,53 +1,27 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: CICD
 
 on:
-  # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow one concurrent deployment
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+    branches: [master]
 
 jobs:
   # Single deploy job since we're just deploying
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: [ubuntu-latest]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "npm"
       - name: Install dependencies
-        run: npm ci
+        run: npm install
       - name: Build
         run: npm run build
+      - name: Login to aws
+        run: aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} --profile break-point-frontend-s3 && aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} --profile break-point-frontend-s3 && aws configure set region ${{ secrets.AWS_DEFAULT_REGION }} --profile break-point-frontend-s3 && aws configure set output "text" --profile break-point-frontend-s3
+      - name: Upload to S3
+        run: aws s3 sync ./dist s3://break-point-frontend
         env:
           VITE_BASE_URL_BACKEND: ${{ secrets.VITE_BASE_URL_BACKEND }}
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload dist folder
-          path: "./dist"
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        #   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        #   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          # AWS_DEFAULT_REGION: 'sa-east-1'
+          
+          
+          
