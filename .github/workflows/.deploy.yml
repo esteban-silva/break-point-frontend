@@ -2,7 +2,7 @@ name: CICD
 
 on:
   push:
-    branches: [master]
+    branches: [main]
 
 jobs:
   # Single deploy job since we're just deploying
